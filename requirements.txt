@@ -1,0 +1,12 @@
+pandas
+pyarrow
+fastparquet
+
+transformers
+datasets
+torch
+nltk
+
+scikit-learn
+scipy
+matplotlib
