@@ -29,20 +29,20 @@ def train_model(train_file, valid_file, output_dir):
     )
 
     training_args = TrainingArguments(
-        output_dir=output_dir,
+        output_dir=output_dir, # Parámetros de salida
         overwrite_output_dir=True,
-        num_train_epochs=3,
+        num_train_epochs=10, # Parámetros de entrenamiento
         per_device_train_batch_size=8,
-        save_steps=500,
+        save_steps=500, # Parámetros de guardado
         save_total_limit=2,
-        logging_dir="./logs",
+        logging_dir="./logs", # Parámetros de logging
         logging_steps=100,
-        evaluation_strategy="steps",
+        evaluation_strategy="steps", # Parámetros evaluación
         eval_steps=500,
-        learning_rate=5e-5,
+        learning_rate=5e-5, # Parámetros optimizador
         warmup_steps=100,
         weight_decay=0.01,
-        push_to_hub=False
+        push_to_hub=False # Parámetros de subida
     )
 
     trainer = Trainer(
