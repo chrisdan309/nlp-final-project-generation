@@ -8,8 +8,6 @@ Enlace de kaggle de la data:
 
 ## Preprocesamiento de Datos de Twitter para Clasificación de Emociones
 
-Este documento describe el proceso de preprocesamiento de datos de Twitter para un modelo de clasificación de emociones. Se proporciona un script en Python que realiza la conversión de los datos a un formato adecuado para ser utilizado por un modelo de lenguaje. A continuación, se explica el flujo detallado de código y los pasos necesarios para llevar a cabo esta tarea.
-
 ### Descripción del Script
 
 El script tiene dos funciones principales:
@@ -23,11 +21,10 @@ El código divide los datos proporcionados en un conjunto de entrenamiento y uno
 
 #### Importación de Bibliotecas
 
+Importamos la biblioteca `pandas` para manejar y procesar los datos.
 ```python
 import pandas as pd
 ```
-
-Se utiliza la biblioteca `pandas` para manejar y procesar los datos.
 
 #### Definición de la Función `preprocess_twitter_data`
 
@@ -58,7 +55,7 @@ La función `preprocess_twitter_data` realiza las siguientes tareas:
 - Formatea los datos agregando una etiqueta textual de la emoción antes del texto original, por ejemplo: `<joy> texto_del_tweet`.
 - Escribe los datos preprocesados en un archivo de texto.
 
-#### Ejecución Principal
+#### Función principal
 
 ```python
 if __name__ == "__main__":
@@ -93,16 +90,16 @@ En la sección principal del código se lleva a cabo lo siguiente:
 
 ## Entrenamiento de un Modelo GPT-2 para Generación de Texto Condicional
 
-Este documento proporciona una descripción detallada de un script en Python utilizado para entrenar un modelo de lenguaje GPT-2 para la generación de texto condicional basado en emociones. El código se basa en la librería `transformers` de Hugging Face, que permite la personalización y entrenamiento de modelos de lenguaje previamente entrenados, como GPT-2.
+Se elaboró un script en Python utilizado para entrenar un modelo de lenguaje GPT-2 para la generación de texto condicional basado en emociones. El código se basa en la librería `transformers` de Hugging Face, que permite la personalización y entrenamiento de modelos de lenguaje previamente entrenados, como GPT-2.
 
 ### Importación de Bibliotecas
+
+Se realizó la importación de las librerías `torch` y `transformers` que se utilizan para manejar los aspectos principales del modelo, la tokenización y el entrenamiento.
 
 ```python
 import torch
 from transformers import GPT2Tokenizer, GPT2LMHeadModel, Trainer, TrainingArguments, TextDataset, DataCollatorForLanguageModeling
 ```
-
-Las bibliotecas `torch` y `transformers` se utilizan para manejar los aspectos principales del modelo, la tokenización y el entrenamiento.
 
 ### Definir el Dispositivo de Entrenamiento
 
@@ -110,7 +107,7 @@ Las bibliotecas `torch` y `transformers` se utilizan para manejar los aspectos p
 device = "cuda" if torch.cuda.is_available() else "cpu"
 ```
 
-El código detecta si hay una GPU disponible para el entrenamiento, en cuyo caso se utiliza la GPU para acelerar el proceso. De lo contrario, el modelo se entrena en la CPU.
+Primero detectamos si poseemos una gpu para poder usarla
 
 ### Preprocesamiento del Dataset
 
@@ -173,7 +170,7 @@ Se utiliza `DataCollatorForLanguageModeling` para manejar la agrupación de dato
     training_args = TrainingArguments(
         output_dir=output_dir,
         overwrite_output_dir=True,
-        num_train_epochs=3,
+        num_train_epochs=50,
         per_device_train_batch_size=8,
         save_steps=500,
         save_total_limit=2,
@@ -188,7 +185,7 @@ Se utiliza `DataCollatorForLanguageModeling` para manejar la agrupación de dato
     )
 ```
 
-Se establecen los argumentos de entrenamiento, como el número de épocas (`num_train_epochs=3`), el tamaño del lote de entrenamiento (`per_device_train_batch_size=8`), y la frecuencia de guardado y evaluación. También se define una tasa de aprendizaje de `5e-5` y se aplica un decaimiento del peso (`weight_decay=0.01`) para evitar el sobreajuste.
+Se establecen los argumentos de entrenamiento, como el número de épocas, el tamaño del lote de entrenamiento (`per_device_train_batch_size=8`), y la frecuencia de guardado y evaluación. También se define una tasa de aprendizaje de `5e-3` y se aplica un decaimiento del peso (`weight_decay=0.01`) para evitar el sobreajuste.
 
 #### Definir y Ejecutar el Entrenador
 
