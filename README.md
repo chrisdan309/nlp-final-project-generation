@@ -62,9 +62,7 @@ label
 5     14972
 ```
 
-
 ![alt text](images/distribution.png)
-
 
 También revisamos la proporción por label
 
@@ -72,8 +70,6 @@ También revisamos la proporción por label
 label_proportion = df['label'].value_counts(normalize=True)
 print(label_proportion)
 ```
-
-
 
 ```txt
 label
@@ -180,6 +176,7 @@ El código divide los datos proporcionados en un conjunto de entrenamiento y uno
 #### Importación de Bibliotecas
 
 Importamos la biblioteca `pandas` para manejar y procesar los datos.
+
 ```python
 import pandas as pd
 ```
@@ -249,8 +246,6 @@ En la sección principal del código se lleva a cabo lo siguiente:
 ## Entrenamiento de un Modelo GPT-2 para Generación de Texto Condicional
 
 Se elaboró un script en Python utilizado para entrenar un modelo de lenguaje GPT-2 para la generación de texto condicional basado en emociones. El código se basa en la librería `transformers` de Hugging Face, que permite la personalización y entrenamiento de modelos de lenguaje previamente entrenados, como GPT-2.
-
-### Importación de Bibliotecas
 
 Se realizó la importación de las librerías `torch` y `transformers` que se utilizan para manejar los aspectos principales del modelo, la tokenización y el entrenamiento.
 
