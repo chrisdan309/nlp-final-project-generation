@@ -1,4 +1,5 @@
 import pandas as pd
+import os
 
 def preprocess_twitter_data(input_parquet, output_file):
     label_to_emotion = {
@@ -25,6 +26,9 @@ if __name__ == "__main__":
     output_file_train = "data/train.txt"
     output_file_valid = "data/valid.txt"
     
+    if not os.path.exists('data'):
+        os.makedirs('data')
+
     df = pd.read_parquet(input_parquet)
     train_df = df.sample(frac=0.8, random_state=42)
     valid_df = df.drop(train_df.index)
