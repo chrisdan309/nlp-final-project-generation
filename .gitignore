@@ -1,4 +1,7 @@
 venv/
+.venv/
 corpus/
 data/
 results/
+model/
+.env

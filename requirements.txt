@@ -10,3 +10,8 @@ nltk
 scikit-learn
 scipy
 matplotlib
+
+fastapi
+openai
+python-dotenv
+uvicorn
