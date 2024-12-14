@@ -31,7 +31,7 @@ def train_model(train_file, valid_file, output_dir):
     training_args = TrainingArguments(
         output_dir=output_dir, # Parámetros de salida
         overwrite_output_dir=True,
-        num_train_epochs=10, # Parámetros de entrenamiento
+        num_train_epochs=3, # Parámetros de entrenamiento
         per_device_train_batch_size=8,
         save_steps=500, # Parámetros de guardado
         save_total_limit=2,

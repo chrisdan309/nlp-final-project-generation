@@ -36,21 +36,23 @@ def generar_secuencia_emocional(texto, emocion):
     prompt = f"""
     Texto: {texto}
     Emoción: {emocion}
-    Basado en el texto y la emoción proporcionada, genera una secuencia creativa y coherente que refleje la misma emoción en el contenido de manera corta y concisa.
+    Basado en el texto y la emoción proporcionada, genera una secuencia creativa y coherente que refleje la misma emoción en el contenido de manera corta y concisa,
+    en el ámbito de pokemon.
     """
     
     try:
         chat_completion = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
-                {"role": "system", "content": "Eres un generador creativo de texto basado en emociones."},
+                {"role": "system", "content": "Eres un profesor pokemon y quiero que comentes dálogos basado en emociones."},
                 {"role": "user", "content": prompt}
             ],
             max_tokens=50,
             temperature=0.8,
             top_p=1.0,
             frequency_penalty=0.5,
-            presence_penalty=0.5
+            presence_penalty=0.5,
+            stop=[".", "\n"]
         )
         print(chat_completion)
         return chat_completion.choices[0].message.content
@@ -82,7 +84,6 @@ def generate_emotion_sequence(request: EmotionRequest):
             detail="La emoción proporcionada no es válida. Use una de las siguientes: sadness, joy, love, anger, fear, surprise."
         )
     
-    # Genera la secuencia emocional
     try:
         generated_text = generar_secuencia_emocional(request.texto, request.emocion)
         # return {"original_message": request.texto, "emotion": request.emocion, "message": generated_text}
